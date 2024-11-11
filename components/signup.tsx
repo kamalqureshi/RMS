@@ -5,7 +5,7 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 import { database } from "../firebaseConfig";
 import { onValue, ref, set, update } from "firebase/database";
 import { v4 as uuidv4 } from "uuid";
-import { primaryBlue, primaryWhite, primaryRed } from "../constants/colors";
+import { primaryBlue, primaryWhite, primaryRed } from "../constants/Colors";
 
 const SignupScreen = () => {
   const [email, setEmail] = useState("");

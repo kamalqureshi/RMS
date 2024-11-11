@@ -364,7 +364,7 @@ const AssetForm = () => {
             arrowStyle={styles.arrowStyle}
           />
 
-          <View
+          {/* <View
             style={{
               display: "flex",
               flexDirection: "row",
@@ -379,7 +379,7 @@ const AssetForm = () => {
               onValueChange={toggleSwitch}
               value={isEnabled}
             />
-          </View>
+          </View> */}
 
           <Button
             title="Submit"

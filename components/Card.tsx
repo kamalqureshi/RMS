@@ -1,6 +1,6 @@
 import React from "react";
 import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
-import { primaryBlue, primaryRed, primaryYellow } from "../constants/colors";
+import { primaryBlue, primaryRed, primaryYellow } from "../constants/Colors";
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import { database } from "../firebaseConfig";

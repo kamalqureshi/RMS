@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { View, TextInput, Button, StyleSheet, Alert, Text } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import { primaryBlue, primaryRed, primaryWhite } from "../constants/colors";
+import { primaryBlue, primaryRed, primaryWhite } from "../constants/Colors";
 import { database } from "../firebaseConfig";
 import { onValue, ref } from "firebase/database";
 import { TouchableOpacity } from "react-native-gesture-handler";

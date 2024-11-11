@@ -6,7 +6,7 @@ import {
   primaryRed,
   primaryWhite,
   shadowGray,
-} from "../constants/colors";
+} from "../constants/Colors";
 import { useRoute } from "@react-navigation/native";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 

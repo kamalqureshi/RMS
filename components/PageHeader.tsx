@@ -2,7 +2,7 @@ import React from "react";
 import { View, StyleSheet, TouchableOpacity, Text } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
-import { primaryBlue } from "../constants/colors";
+import { primaryBlue } from "../constants/Colors";
 
 const styles = StyleSheet.create({
   container: {

@@ -208,7 +208,7 @@ const TenantForm = () => {
           numberOfLines={50}
         />
 
-        <View style={styles.toggle}>
+        {/* <View style={styles.toggle}>
           <Text style={styles.label}>Active</Text>
           <Switch
             trackColor={{ false: "#767577", true: "#81b0ff" }}
@@ -217,9 +217,9 @@ const TenantForm = () => {
             onValueChange={toggleSwitch}
             value={isActive}
           />
-        </View>
+        </View> */}
 
-        <TouchableOpacity onPress={referenceButtonHandler}>
+        {/* <TouchableOpacity onPress={referenceButtonHandler}>
           <View style={styles.reference}>
             <Text style={styles.label}>Reference</Text>
             <Ionicons
@@ -230,7 +230,7 @@ const TenantForm = () => {
               size={25}
             />
           </View>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
 
         {isReference && (
           <View style={styles.container}>

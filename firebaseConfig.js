@@ -2,14 +2,13 @@ import { initializeApp } from "firebase/app";
 import { getDatabase, goOnline, goOffline } from "firebase/database";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyApj4HWYhFq-GW3KpWEd_A_bk3EAs6c22Q",
-  authDomain: "rental-management-system-01.firebaseapp.com",
-  databaseURL:
-    "https://rental-management-system-01-default-rtdb.firebaseio.com",
-  projectId: "rental-management-system-01",
-  storageBucket: "rental-management-system-01.appspot.com",
-  messagingSenderId: "476743866480",
-  appId: "1:476743866480:web:b0d0409bd1ee52ddd8fcb5",
+  apiKey: "XXXXXXXX-XXXXXXXX-XXXXXXX",
+  authDomain: "XXXXXXXX-XXXXXXXX-XXXXXXX",
+  databaseURL: "XXXXXXXX-XXXXXXXX-XXXXXXX",
+  projectId: "XXXXXXXX-XXXXXXXX-XXXXXXX",
+  storageBucket: "XXXXXXXX-XXXXXXXX-XXXXXXX",
+  messagingSenderId: "XXXXXXXX-XXXXXXXX-XXXXXXX",
+  appId: "XXXXXXXX-XXXXXXXX-XXXXXXX",
 };
 
 const app = initializeApp(firebaseConfig);

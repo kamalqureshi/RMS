@@ -1,6 +1,6 @@
 import React from "react";
 import { View, Text, TouchableOpacity, Dimensions } from "react-native";
-import { primaryBlue } from "../constants/colors";
+import { primaryBlue } from "../constants/Colors";
 import { useNavigation } from "@react-navigation/native";
 
 export function AddButton({ label = "Add", isAsset = false }) {
