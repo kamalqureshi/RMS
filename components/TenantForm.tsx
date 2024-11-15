@@ -98,15 +98,17 @@ const TenantForm = () => {
       const assetToUpdate = filteredList.map(asset => 
         { if (asset.tenantId === id) return asset }
       )
-      await assetToUpdate.length && id && assetToUpdate.forEach( asset => 
-          update(ref(database, `asset-${asset.id}`), {
-          tenantFirstName: firstName || "",
-          tenantLastName: lastName || "",
-          tenantEmailAddress: emailAddress || "",
-          tenantMobile: mobileNumber || "",
-          tenantAddress: tenantAddress || ""
-        })
-      )
+      await assetToUpdate.length && assetToUpdate.forEach( asset => 
+          {
+            if(asset){
+              update(ref(database, `asset-${asset?.id}`), {
+              tenantFirstName: firstName || "",
+              tenantLastName: lastName || "",
+              tenantEmailAddress: emailAddress || "",
+              tenantMobile: mobileNumber || "",
+              tenantAddress: tenantAddress || ""
+            })
+          }})
     }
 
       console.log("Tenant Data written to Firebase");

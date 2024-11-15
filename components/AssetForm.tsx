@@ -41,21 +41,21 @@ const AssetForm = () => {
 
   // Asset Dropdown
   const [assetTypeItems, setAssetTypeItems] = useState([
-    { label: "House", value: "House" },
-    { label: "Condo", value: "Condo" },
-    { label: "Apartment", value: "Apartment" },
-    { label: "Flat", value: "Flat" },
-    { label: "Shop", value: "Shop" },
-    { label: "Hall", value: "Hall" },
-    { label: "Plaza", value: "Plaza" },
+    { label: "House", value: "House", itemKey: "House" },
+    { label: "Condo", value: "Condo", itemKey: "Condo" },
+    { label: "Apartment", value: "Apartment", itemKey: "Apartment" },
+    { label: "Flat", value: "Flat", itemKey: "Flat" },
+    { label: "Shop", value: "Shop", itemKey: "Shop" },
+    { label: "Hall", value: "Hall", itemKey: "Hall" },
+    { label: "Plaza", value: "Plaza", itemKey: "Plaza" },
   ]);
   const [assetTypeOpen, setAssetTypeOpen] = useState(false);
   const [assetTypeValue, setAssetTypeValue] = useState(null);
 
   //Status Dropdown
   const [statusItems, setStatusItems] = useState([
-    { label: "Rented", value: "Rented" },
-    { label: "Available", value: "Available" },
+    { label: "Rented", value: "Rented", itemKey: "Rented" },
+    { label: "Available", value: "Available", itemKey: "Available" },
   ]);
   const [statusOpen, setStatusOpen] = useState(false);
   const [statusValue, setStatusValue] = useState(null);
@@ -64,10 +64,10 @@ const AssetForm = () => {
 
   //Rental Period Dropdown
   const [rentalPeriodItems, setRentalPeriodItems] = useState([
-    { label: "Weekly", value: "Weekly" },
-    { label: "Bi-Weekly", value: "Bi-Weekly" },
-    { label: "Monthly", value: "Monthly" },
-    { label: "Annually", value: "Annually" },
+    { label: "Weekly", value: "Weekly", itemKey: "Weekly" },
+    { label: "Bi-Weekly", value: "Bi-Weekly", itemKey: "Bi-Weekly" },
+    { label: "Monthly", value: "Monthly", itemKey: "Monthly" },
+    { label: "Annually", value: "Annually", itemKey: "Annually" },
   ]);
   const [rentalPeriodOpen, setRentalPeriodOpen] = useState(false);
   const [rentalPeriodValue, setRentalPeriodValue] = useState(null);
@@ -83,10 +83,16 @@ const AssetForm = () => {
 
   const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
 
+  useEffect(() => {
+    if(statusValue === "Available"){
+      setAvailableTenantsValue(null)
+    }
+  }, [statusValue])
+
   const handleSubmit = async () => {
     const assetId = uuidv4();
     const tenantId = availableTenantsValue
-    const tenant = filteredList?.find(tenant => tenant.id === tenantId)
+    const tenant = filteredList?.find(tenant => tenant?.id === tenantId)
     const emailPromise = await AsyncStorage.getItem('@email').then(email => {
       return email
     })
@@ -103,13 +109,16 @@ const AssetForm = () => {
             isActive: isEnabled,
             startContract: `${startContract.date()}/${startContract.month()+1}/${startContract.year()}`,
             endContract: `${endContract.date()}/${endContract.month()+1}/${endContract.year()}`,
-            tenantId: tenantId,
-            tenantFirstName: tenant?.firstName || "",
-            tenantLastName: tenant?.lastName || "",
-            tenantEmailAddress: tenant?.emailAddress || "",
-            tenantMobile: tenant?.mobileNumber || "",
-            tenantAddress: tenant?.tenantAddress || "",
-            userEmail: emailPromise 
+            userEmail: emailPromise, 
+            ...(tenantId ? {
+              tenantId: tenantId,
+              tenantFirstName: tenant?.firstName || "",
+              tenantLastName: tenant?.lastName || "",
+              tenantEmailAddress: tenant?.emailAddress || "",
+              tenantMobile: tenant?.mobileNumber || "",
+              tenantAddress: tenant?.tenantAddress || "",
+            }: {})
+            
           })
         : await set(ref(database, `asset-${assetId}`), {
             id: assetId,
@@ -123,14 +132,16 @@ const AssetForm = () => {
             isActive: isEnabled,
             startContract: `${startContract.date()}/${startContract.month()+1}/${startContract.year()}`,
             endContract: `${endContract.date()}/${endContract.month()+1}/${endContract.year()}`,
-            tenantId: tenantId,
-            tenantFirstName: tenant?.firstName || "",
-            tenantLastName: tenant?.lastName || "",
-            tenantEmailAddress: tenant?.emailAddress || "",
-            tenantMobile: tenant?.mobileNumber || "",
-            tenantAddress: tenant?.tenantAddress || "",
             type: "Asset",
-            userEmail: emailPromise 
+            userEmail: emailPromise, 
+            ...(tenantId ? {
+              tenantId: tenantId,
+              tenantFirstName: tenant?.firstName || "",
+              tenantLastName: tenant?.lastName || "",
+              tenantEmailAddress: tenant?.emailAddress || "",
+              tenantMobile: tenant?.mobileNumber || "",
+              tenantAddress: tenant?.tenantAddress || "",
+            }: {})
           });
       console.log("Asset Data written to Firebase");
     } catch (error) {
@@ -252,6 +263,7 @@ const AssetForm = () => {
             dropDownStyle={styles.dropdownStyle}
             labelStyle={styles.labelStyle}
             arrowStyle={styles.arrowStyle}
+            key={assetTypeValue}
           />
 
           <Text style={styles.label}>Asset Name*</Text>
@@ -294,6 +306,7 @@ const AssetForm = () => {
             dropDownStyle={styles.dropdownStyle}
             labelStyle={styles.labelStyle}
             arrowStyle={styles.arrowStyle}
+            key={`status-${statusValue}`}
           />
 
           <Text style={styles.label}>Rental Amount*</Text>
@@ -318,6 +331,7 @@ const AssetForm = () => {
             dropDownStyle={styles.dropdownStyle}
             labelStyle={styles.labelStyle}
             arrowStyle={styles.arrowStyle}
+            key={`rentalPeriod-${rentalPeriodValue}`}
           />
 
           <SafeAreaProvider>
@@ -362,6 +376,7 @@ const AssetForm = () => {
             dropDownStyle={styles.dropdownStyle}
             labelStyle={styles.labelStyle}
             arrowStyle={styles.arrowStyle}
+            key={`tenant-${availableTenantsValue}`}
           />
 
           {/* <View

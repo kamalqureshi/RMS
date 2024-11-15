@@ -96,7 +96,7 @@ const styles = StyleSheet.create({
   },
   header: {
     fontSize: 24,
-    fontWeight: "bold",
+    // fontWeight: "bold",
     textAlign: "center",
     marginBottom: 24,
   },
@@ -115,7 +115,7 @@ const styles = StyleSheet.create({
   Login: {
     marginTop: 3,
     marginLeft: 5,
-    fontWeight: 500,
+    // fontWeight: 500,
   },
   buttonContainer: {
     display: 'flex',
